@@ -5,13 +5,6 @@ This library provides a client for the [IndexTank](http://www.indextank.com/) ho
 
 IndexTank requires an API account for usage. You can get one by signing up for free at [www.indextank.com](http://www.indextank.com/).
 
-Installation
-------------
-
- * This library uses [Zend Framework](http://framework.zend.com/) which must be installed and available in the include path
- * [Download the latest version](https://github.com/helpdesk/indextank-php-zend-framework/zipball/master) of *indextank-php-zend-framework*
- * Extract and copy the directory `IndexTank/` into your include path
-
 Indexing and Searching
 ----------------------
 
@@ -43,6 +36,14 @@ In the second example, we reconnect to IndexTank and retrieve the previously cre
     
     $index = $client->getIndex('books');
     
+    $results = $index->search('fairy tale');
+    
+    foreach ($results as $result) {
+        echo '<a href="/books/' . $result['docid'] . '">' . $result['snippets']['text'] . '</a><br>';
+    }
+    
+    echo '<br>';
+
     $results = $index->search('big wolf OR witch', array('text', 'title', 'author'));
     
     foreach ($results as $result) {
@@ -51,6 +52,10 @@ In the second example, we reconnect to IndexTank and retrieve the previously cre
         echo $result['snippets']['text'] . '<br>'
         echo '<br>';
     }
+
+Removing Documents and Indexes
+------------------------------
+...
 
 Configuration
 -------------
@@ -69,9 +74,12 @@ PHP Code
     $index = $client->getIndex('books');
     $index->deleteDocument('book1');
 
-Removing Documents and Indexes
-------------------------------
-...
+Installation
+------------
+
+ * This library uses [Zend Framework](http://framework.zend.com/) which must be installed and available in the include path
+ * [Download the latest version](https://github.com/helpdesk/indextank-php-zend-framework/zipball/master) of *indextank-php-zend-framework*
+ * Extract and copy the directory `IndexTank/` into your include path
 
 Contributing
 ------------
@@ -80,7 +88,7 @@ Contributing
 2. Create a branch (`git checkout -b my_changes`)
 3. Commit your changes (`git commit -am "Added Beer Goggle API"`)
 4. Push to the branch (`git push origin my_changes`)
-5. Create an [Issue][https://github.com/helpdesk/indextank-php-zend-framework/issues] with a link to your branch
+5. Create an [Issue](https://github.com/helpdesk/indextank-php-zend-framework/issues) with a link to your branch
 6. Enjoy a refreshing Diet Coke and wait
 
 Copyright &copy; 2011 [Helpdesk](http://www.helpdeskhq.com/). See LICENSE for details.
