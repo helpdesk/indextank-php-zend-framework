@@ -35,7 +35,7 @@ require_once 'Zend/Json.php';
 require_once 'Zend/Http/Client.php';
 require_once 'Zend/Http/Exception.php';
 
-require_once 'IndexTank/Index.php';
+require_once 'Index.php';
 
 /**
  * IndexTank ZF Client
@@ -316,7 +316,7 @@ class IndexTank_Client
     protected function _call($uri, $params = array(), $method = 'GET')
     {
         if (empty($this->_apiKey)) {
-            require_once 'IndexTank/Exception.php';
+            require_once 'Exception.php';
             throw new IndexTank_Exception('Client is not configured (no API key)');
         }
         
@@ -339,12 +339,12 @@ class IndexTank_Client
         try {
             $response = $client->request($method);
         } catch (Zend_Http_Exception $e) {
-            require_once 'IndexTank/Exception.php';
+            require_once 'Exception.php';
             throw new IndexTank_Exception('Connection failed: ' . $e->getMessage());
         }
 
         if (!$response->isSuccessful()) {
-            require_once 'IndexTank/Exception.php';
+            require_once 'Exception.php';
             throw new IndexTank_Exception('Request failed: (' . $response->getStatus() . ') ' .
                 $response->getMessage() . ': ' . $response->getBody());
         }

@@ -49,7 +49,7 @@ In the second example, we reconnect to IndexTank and retrieve the previously cre
     foreach ($results as $result) {
         echo '<a href="/books/' . $result['docid'] . '">' . $result['fields']['title'] . '</a><br>';
         echo '<small><em>' . $result['fields']['author'] . '</em></small><br>';
-        echo $result['snippets']['text'] . '<br>'
+        echo $result['snippets']['text'] . '<br>';
         echo '<br>';
     }
 

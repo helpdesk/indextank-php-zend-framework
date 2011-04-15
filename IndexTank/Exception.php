@@ -30,6 +30,8 @@
  * policies, either expressed or implied, of Helpdesk.
  */
 
+require_once 'Zend/Exception.php';
+
 /**
  * IndexTank exception
  *
