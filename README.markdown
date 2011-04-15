@@ -66,9 +66,13 @@ Instead of passing the private IndexTank URL to the constructor every time, you 
 
 application.ini
 
-    resources.indextank.private_url = 'PRIVATE_URL'
+    ; Include IndexTank resource in plugin paths
+    pluginPaths.IndexTank_Application_Resource = "IndexTank/Application/Resource"
+    
+    ; IndexTank Config
+    resources.IndexTank.private_url = "http://:XXXXX@abcde.api.indextank.com"
 
-PHP Code
+The IndexTank client can now be constructed without passing the private URL every time
 
     $client = new IndexTank_Client();
     $index = $client->getIndex('books');
@@ -80,6 +84,7 @@ Installation
  * This library uses [Zend Framework](http://framework.zend.com/) which must be installed and available in the include path
  * [Download the latest version](https://github.com/helpdesk/indextank-php-zend-framework/zipball/master) of *indextank-php-zend-framework*
  * Extract and copy the directory `IndexTank/` into your include path
+ * You are good to go!
 
 Contributing
 ------------

@@ -35,7 +35,7 @@ require_once 'Zend/Json.php';
 require_once 'Zend/Http/Client.php';
 require_once 'Zend/Http/Exception.php';
 
-require_once 'Index.php';
+require_once 'IndexTank/Index.php';
 
 /**
  * IndexTank ZF Client
@@ -51,6 +51,13 @@ class IndexTank_Client
      * @var string
      */
     const VERSION = '1.0';
+
+    /**
+     * Global default settings for IndexTank
+     *
+     * @var array
+     */
+    public static $defaultOptions = array();
 
     /**
      * The password used to authenticate with the API 
@@ -81,8 +88,12 @@ class IndexTank_Client
      * @param string|array|Zend_Config $options  the private url or an array
      *                                            or Zend_Config of options
      */
-    public function __construct($options = array())
+    public function __construct($options = null)
     {
+        if ($options === null) {
+            $options = self::$defaultOptions;
+        }
+
         if (is_string($options)) {
             $this->setPrivateUrl($options);
         } else {
@@ -316,7 +327,7 @@ class IndexTank_Client
     protected function _call($uri, $params = array(), $method = 'GET')
     {
         if (empty($this->_apiKey)) {
-            require_once 'Exception.php';
+            require_once 'IndexTank/Exception.php';
             throw new IndexTank_Exception('Client is not configured (no API key)');
         }
         
@@ -339,12 +350,12 @@ class IndexTank_Client
         try {
             $response = $client->request($method);
         } catch (Zend_Http_Exception $e) {
-            require_once 'Exception.php';
+            require_once 'IndexTank/Exception.php';
             throw new IndexTank_Exception('Connection failed: ' . $e->getMessage());
         }
 
         if (!$response->isSuccessful()) {
-            require_once 'Exception.php';
+            require_once 'IndexTank/Exception.php';
             throw new IndexTank_Exception('Request failed: (' . $response->getStatus() . ') ' .
                 $response->getMessage() . ': ' . $response->getBody());
         }
