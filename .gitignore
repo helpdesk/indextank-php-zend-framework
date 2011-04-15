@@ -1,0 +1,13 @@
+.settings/*
+.buildpath
+.project
+.*.sw*
+*.log
+*.pid
+.DS_Store
+.DS_Store?
+ehthumbs.db
+.sw*
+Icon?
+Thumbs.db
+*.py[co]
