@@ -13,21 +13,21 @@ Indexing and Searching
 We connect to IndexTank using our private URL. The private URL is displayed on your account dashboard when logged into IndexTank. Once connected, a new index is created on the server to store our list of books. We then add to books as documents to the index, ready to be searched. The books include three distinct fields, `text` (the standard field to be searched), `author` and `title` which will will later retrieve for listing.
 
 ``` php
-    $client = new IndexTank_Client('PRIVATE_URL');
-    
-    $index = $client->createIndex('books');
-    
-    $index->addDocument('book1', array(
-        'title'  => 'Little Red Riding Hood',
-        'author' => 'Folktale',
-        'text'   => 'A famous fairy tale about a young girl and a Big Bad Wolf'
-    ));
-    
-    $index->addDocument('book2', array(
-        'title'  => 'Hansel and Gretel',
-        'author' => 'Brothers Grimm',
-        'text'   => 'Hansel and Gretel are a young brother and sister threatened by a witch'
-    ));
+$client = new IndexTank_Client('PRIVATE_URL');
+
+$index = $client->createIndex('books');
+
+$index->addDocument('book1', array(
+    'title'  => 'Little Red Riding Hood',
+    'author' => 'Folktale',
+    'text'   => 'A famous fairy tale about a young girl and a Big Bad Wolf'
+));
+
+$index->addDocument('book2', array(
+    'title'  => 'Hansel and Gretel',
+    'author' => 'Brothers Grimm',
+    'text'   => 'Hansel and Gretel are a young brother and sister threatened by a witch'
+));
 ```
 
 ### Example: Search an existing index ###
