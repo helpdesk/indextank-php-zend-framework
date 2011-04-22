@@ -72,11 +72,13 @@ Instead of passing the private IndexTank URL to the constructor every time, you 
 
 application.ini
 
-    ; Include IndexTank resource in plugin paths
-    pluginPaths.IndexTank_Application_Resource = "IndexTank/Application/Resource"
-    
-    ; IndexTank Config
-    resources.IndexTank.private_url = "http://:XXXXX@abcde.api.indextank.com"
+``` ini
+; Include IndexTank resource in plugin paths
+pluginPaths.IndexTank_Application_Resource = "IndexTank/Application/Resource"
+
+; IndexTank Config
+resources.IndexTank.private_url = "http://:XXXXX@abcde.api.indextank.com"
+```
 
 The IndexTank client can now be constructed without passing the private URL every time
 
