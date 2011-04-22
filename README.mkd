@@ -12,7 +12,8 @@ Indexing and Searching
 
 We connect to IndexTank using our private URL. The private URL is displayed on your account dashboard when logged into IndexTank. Once connected, a new index is created on the server to store our list of books. We then add to books as documents to the index, ready to be searched. The books include three distinct fields, `text` (the standard field to be searched), `author` and `title` which will will later retrieve for listing.
 
-``` ruby
+``` php
+<?
 $client = new IndexTank_Client('PRIVATE_URL');
 
 $index = $client->createIndex('books');
@@ -34,26 +35,29 @@ $index->addDocument('book2', array(
 
 In the second example, we reconnect to IndexTank and retrieve the previously created index. We then run a search query on the index, looping through the results printing them. Note that the search is instructed to retrieve all three fields from the index rather than just the default `text` field.
 
-    $client = new IndexTank_Client('PRIVATE_URL');
-    
-    $index = $client->getIndex('books');
-    
-    $results = $index->search('fairy tale');
-    
-    foreach ($results as $result) {
-        echo '<a href="/books/' . $result['docid'] . '">' . $result['snippets']['text'] . '</a><br>';
-    }
-    
-    echo '<br>';
+``` php
+<?
+$client = new IndexTank_Client('PRIVATE_URL');
 
-    $results = $index->search('big wolf OR witch', array('text', 'title', 'author'));
-    
-    foreach ($results as $result) {
-        echo '<a href="/books/' . $result['docid'] . '">' . $result['fields']['title'] . '</a><br>';
-        echo '<small><em>' . $result['fields']['author'] . '</em></small><br>';
-        echo $result['snippets']['text'] . '<br>';
-        echo '<br>';
-    }
+$index = $client->getIndex('books');
+
+$results = $index->search('fairy tale');
+
+foreach ($results as $result) {
+    echo '<a href="/books/' . $result['docid'] . '">' . $result['snippets']['text'] . '</a><br>';
+}
+
+echo '<br>';
+
+$results = $index->search('big wolf OR witch', array('text', 'title', 'author'));
+
+foreach ($results as $result) {
+    echo '<a href="/books/' . $result['docid'] . '">' . $result['fields']['title'] . '</a><br>';
+    echo '<small><em>' . $result['fields']['author'] . '</em></small><br>';
+    echo $result['snippets']['text'] . '<br>';
+    echo '<br>';
+}
+```
 
 Removing Documents and Indexes
 ------------------------------
@@ -76,9 +80,12 @@ application.ini
 
 The IndexTank client can now be constructed without passing the private URL every time
 
-    $client = new IndexTank_Client();
-    $index = $client->getIndex('books');
-    $index->deleteDocument('book1');
+``` php 
+<?
+$client = new IndexTank_Client();
+$index = $client->getIndex('books');
+$index->deleteDocument('book1');
+```
 
 Installation
 ------------
