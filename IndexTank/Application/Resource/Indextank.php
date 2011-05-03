@@ -54,7 +54,7 @@ require_once 'IndexTank/Client.php';
  * @author Helpdesk <techies@helpdeskhq.com>
  * @category IndexTank
  */
-class IndexTank_Application_Resource_IndexTank
+class IndexTank_Application_Resource_Indextank
     extends Zend_Application_Resource_ResourceAbstract
 {
     /**
